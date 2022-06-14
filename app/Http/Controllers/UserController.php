@@ -11,6 +11,12 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:12',
+            'password_confirmation'=> 'required_with:password|same:password|min:6|max:12'
+        ]);
         $user=new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -22,6 +28,12 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
+        $request->validate([
+
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:12',
+            
+        ]);
         $login_result = Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')]);
         if ($login_result) {
             $request->session()->flash('message', 'You are now successfully login.');

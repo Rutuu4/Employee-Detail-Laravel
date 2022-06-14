@@ -21,7 +21,14 @@
 
         <div class="text-end">
           @if(Auth::check())
-            <a href="{{route('logout')}}"><button type="button" class="btn btn-outline-light me-2">Logout</button></a>
+           <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
+            <li><a href="{{route('logout')}}" class="dropdown-item">Log Out</a></li>
+          </ul>
+        </div>
           @endif
           @if(!Auth::check())
             <a href="/login"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
